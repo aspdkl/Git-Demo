@@ -231,7 +231,6 @@ namespace FanXing.Editor
             _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, GUILayout.Height(400));
             for (int i = 0; i < _questConfigs.Count; i++)
             {
-                // 检查当前索引是否为全局选中的索引 全局索引是最后一个任务对应的索引
                 bool isSelected = i == _selectedQuestIndex;
                 GUI.backgroundColor = isSelected ? Color.cyan : Color.white;
                 // 按钮生成和交互
@@ -550,11 +549,8 @@ namespace FanXing.Editor
             _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, GUILayout.Height(400));
             for (int i = 0; i < _skillConfigs.Count; i++)
             {
-                // 通过循环来判断 _selectedSkillIndex的大小
                 bool isSelected = i == _selectedSkillIndex;
-                // 找到了选中的技能后 将其背景确认为青色
                 GUI.backgroundColor = isSelected ? Color.cyan : Color.white;
-                // 将技能按钮全部创建出来 并且选中按钮后会改变对应的值
                 if (GUILayout.Button($"{_skillConfigs[i].skillName}(ID:{_skillConfigs[i].skillId})", GUILayout.Height(25)))
                 {
                     _selectedSkillIndex = i; // 因为OnGUI是每帧都会调用 所以在我选择了这个按钮改变了index后 上面的代码会让对应按钮变色
@@ -643,7 +639,6 @@ namespace FanXing.Editor
         #region 数据加载保存
         private void LoadNPCConfigs()
         {
-            // ?? 空合并运算符 如果左侧返回null 则使用右侧的逻辑
             _npcConfigs = ImportJsonConfig<List<NPCConfigData>>("npc_config") ?? new List<NPCConfigData>();
         }
 
